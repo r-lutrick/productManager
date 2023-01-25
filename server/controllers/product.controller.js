@@ -14,3 +14,10 @@ module.exports.allProducts = (req, res) => {
         .then(data => res.json(data))
         .catch(err => res.json(err))
 }
+
+// Read one
+module.exports.oneProduct = (req, res) => {
+    Product.findOne({_id: req.params.id})
+        .then(data => res.json(data))
+        .catch(err => res.json(err))
+}
