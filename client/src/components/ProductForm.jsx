@@ -1,21 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import ProductShowAll from './ProductShowAll'
 
 
 const ProductForm = () => {
     const [title, setTitle] = useState("")
     const [price, setPrice] = useState("")
     const [description, detDescription] = useState("")
-    const [products, setProducts] = useState([])
-
     const navigate = useNavigate();
-
-    useEffect(() => {
-        axios.get('http://localhost:8001/api/product/get')
-            .then(res => setProducts(res.data))
-            .catch(err => console.log(`Getting data error: ${err}`))
-    }, [])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -77,16 +70,7 @@ const ProductForm = () => {
                 </form>
             </div>
             <hr />
-            <div>
-                <h1>All Products:</h1>
-                {
-                    products.map((prod, i) => {return (
-                        <div key={i}>
-                            <p>{prod.title}</p>
-                        </div>
-                        )})
-                }
-            </div>
+            <ProductShowAll />
         </div>
     )
 }
