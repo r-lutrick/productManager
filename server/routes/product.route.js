@@ -7,4 +7,7 @@ module.exports = (app) => {
 
     // Read
     app.get("/api/product/get", Product.allProducts)
+
+    // Read One
+    app.get("/api/product/get/:id", Product.oneProduct)
 }
