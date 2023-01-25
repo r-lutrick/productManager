@@ -70,7 +70,7 @@ const ProductForm = () => {
                 </form>
             </div>
             <hr />
-            <ProductShowAll />
+            <ProductShowAll handleSubmit={handleSubmit} />
         </div>
     )
 }
