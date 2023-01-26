@@ -11,19 +11,16 @@ const ProductEdit = () => {
     const [description, setDescription] = useState(product.description)
     const navigate = useNavigate()
 
-
     useEffect(() => {
         axios.get(`http://localhost:8001/api/product/get/${id}`)
-            .then(res => {
-                setProduct(res.data)
-            })
+            .then(res => {setProduct(res.data)})
             .catch(err => console.log(err))
     }, [id])
 
     const handleSubmit = (e) => {
         e.preventDefault()
         axios.put(`http://localhost:8001/api/product/update/${id}`, { title, price, description })
-            .then(res => navigate(`/product/${product._id}`))
+            .then(res => navigate(`/detail/${product._id}`))
             .catch(err => console.log(err))
     }
 
@@ -44,17 +41,17 @@ const ProductEdit = () => {
                     <input
                         type="text"
                         className='form-control mb-3'
-                        placeholder={product.title}
+                        placeholder={ product.title }
                         onChange={(e) => { setTitle(e.target.value) }} />
                     <input
                         type="text"
                         className='form-control mb-3'
-                        placeholder={product.price}
+                        placeholder={ product.price }
                         onChange={(e) => { setPrice(e.target.value) }} />
                     <input
                         type="text"
                         className='form-control mb-3'
-                        placeholder={product.description}
+                        placeholder={ product.description }
                         onChange={(e) => { setDescription(e.target.value) }} />
                 </div>
                 <div className='d-flex justify-content-around'>

@@ -1,14 +1,11 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import ProductShowAll from './ProductShowAll'
 
 
 const ProductForm = () => {
     const [title, setTitle] = useState("")
     const [price, setPrice] = useState("")
     const [description, setDescription] = useState("")
-    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -17,7 +14,7 @@ const ProductForm = () => {
             price: price,
             description: description
         })
-            .then(res => navigate("/"))
+            .then(res => console.log(res))
             .catch(err => console.log(`Create Page error: ${err}`))
 
         setTitle('');
@@ -69,8 +66,6 @@ const ProductForm = () => {
                     <button className='btn btn-dark w-50' type='submit'>Create</button>
                 </form>
             </div>
-            <hr />
-            <ProductShowAll handleSubmit={handleSubmit} />
         </div>
     )
 }

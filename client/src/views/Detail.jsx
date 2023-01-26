@@ -1,17 +1,16 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
 
-const ProductDetail = () => {
+const Detail = () => {
     const [product, setProduct] = useState([])
+    // const [edit, setEdit] = useState(false)
     const { id } = useParams()
     const navigate = useNavigate()
 
     useEffect(() => {
         axios.get(`http://localhost:8001/api/product/get/${id}`)
-            .then((res) => {
-                setProduct(res.data)
-            })
+            .then((res) => { setProduct(res.data) })
             .catch((err) => { console.log(`Product Detail error: ${err}`) })
     }, [id])
 
@@ -35,11 +34,11 @@ const ProductDetail = () => {
                 </tbody>
             </table>
             <div className='d-flex justify-content-around'>
-                <button className='btn btn-dark w-25' onClick={(e) => { e.preventDefault(); navigate('/') }}>Home</button>
-                <button className='btn btn-outline-dark w-25' onClick={(e) => { e.preventDefault(); navigate(`/product/edit/${product._id}`) }}>Edit</button>
+                <button className='btn btn-dark w-25' onClick={() => { navigate(`/`) }}>Home</button>
+                <button className='btn btn-outline-dark w-25' onClick={() => { navigate(`/edit/${product._id}`) }}>Edit</button>
             </div>
         </div>
     )
 }
 
-export default ProductDetail
+export default Detail
