@@ -34,7 +34,10 @@ const ProductDetail = () => {
                     </tr>
                 </tbody>
             </table>
-            <button className='btn btn-outline-dark w-50' onClick={(e) => {e.preventDefault(); navigate('/')}}>Home</button>
+            <div className='d-flex justify-content-around'>
+                <button className='btn btn-dark w-25' onClick={(e) => { e.preventDefault(); navigate('/') }}>Home</button>
+                <button className='btn btn-outline-dark w-25' onClick={(e) => { e.preventDefault(); navigate(`/product/edit/${product._id}`) }}>Edit</button>
+            </div>
         </div>
     )
 }

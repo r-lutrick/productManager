@@ -7,7 +7,7 @@ import ProductShowAll from './ProductShowAll'
 const ProductForm = () => {
     const [title, setTitle] = useState("")
     const [price, setPrice] = useState("")
-    const [description, detDescription] = useState("")
+    const [description, setDescription] = useState("")
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
@@ -22,7 +22,7 @@ const ProductForm = () => {
 
         setTitle('');
         setPrice('');
-        detDescription('');
+        setDescription('');
     }
 
     return (
@@ -62,11 +62,11 @@ const ProductForm = () => {
                             <input
                                 className='form-control'
                                 type="text"
-                                onChange={(e) => { detDescription(e.target.value) }}
+                                onChange={(e) => { setDescription(e.target.value) }}
                                 value={description} />
                         </div>
                     </div>
-                    <button className='btn btn-outline-dark w-50' type='submit'>Create</button>
+                    <button className='btn btn-dark w-50' type='submit'>Create</button>
                 </form>
             </div>
             <hr />
