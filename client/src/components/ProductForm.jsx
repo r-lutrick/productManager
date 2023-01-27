@@ -16,7 +16,9 @@ const ProductForm = () => {
             price: price,
             description: description
         })
-            .then(res => setErrors({}))
+            .then(res => {
+                setErrors({})
+            })
             .catch(err => {
                 const errorResponse = err.response.data.errors
                 const errorObj = {}
@@ -29,10 +31,11 @@ const ProductForm = () => {
                 // console.log(errorObj)
                 setErrors(errorObj)
             })
-
-        setTitle('');
-        setPrice('');
-        setDescription('');
+        if (!errors) {
+            setTitle('');
+            setPrice('');
+            setDescription('');
+        }
     }
 
     return (
@@ -44,7 +47,7 @@ const ProductForm = () => {
                 <form onSubmit={handleSubmit}>
                     {/* {errors.map((err, index) => <p key={index}>{err}</p>)} */}
                     {/* Form divisions */}
-                    <p style={{margin:0, color:"red"}}>{errors.title}</p>
+                    <p style={{ margin: 0, color: "red" }}>{errors.title}</p>
                     <div className="mb-3 row bg-dark bg-opacity-10 p-2 rounded">
                         {/* Title */}
                         <label className="col-sm-4 col-form-label">Title</label>
@@ -56,7 +59,7 @@ const ProductForm = () => {
                                 value={title} />
                         </div>
                     </div>
-                    <p style={{margin:0, color:"red"}}>{errors.price}</p>
+                    <p style={{ margin: 0, color: "red" }}>{errors.price}</p>
                     <div className="mb-3 row bg-dark bg-opacity-10 p-2 rounded">
                         {/* Price */}
                         <label className="col-sm-4 col-form-label">Price</label>
@@ -68,7 +71,7 @@ const ProductForm = () => {
                                 value={price} />
                         </div>
                     </div>
-                    <p style={{margin:0, color:"red"}}>{errors.description}</p>
+                    <p style={{ margin: 0, color: "red" }}>{errors.description}</p>
                     <div className="mb-3 row bg-dark bg-opacity-10 p-2 rounded">
                         {/* Description */}
                         <label className="col-sm-4 col-form-label">Description</label>
