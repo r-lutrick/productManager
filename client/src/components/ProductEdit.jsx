@@ -13,8 +13,12 @@ const ProductEdit = () => {
 
     useEffect(() => {
         axios.get(`http://localhost:8001/api/product/get/${id}`)
-            .then(res => {setProduct(res.data)})
-            .catch(err => console.log(err))
+            .then(res => {
+                setProduct(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }, [id])
 
     const handleSubmit = (e) => {

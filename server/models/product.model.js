@@ -4,15 +4,17 @@ const mongoose = require('mongoose');
 const ProductSchema = new mongoose.Schema({
     title: {
         type: String,
-        minLength: [1, "Can not be empty"]
+        minLength: [2, "Title must be 2 or more characters"],
+        required: true
     },
     price: {
         type: Number,
-        min: [1, "Must be positive number"]
+        min: [0, "Price must be positive number"],
+        required: true
     },
     description: {
         type: String,
-        minLength: [1, "Can not be empty"]
+        minLength: [1, "Description can not be empty"]
     }
 }, { timestamps: true })
 

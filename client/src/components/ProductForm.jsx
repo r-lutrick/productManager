@@ -6,6 +6,8 @@ const ProductForm = () => {
     const [title, setTitle] = useState("")
     const [price, setPrice] = useState("")
     const [description, setDescription] = useState("")
+    // Error handling state
+    const [errors, setErrors] = useState({})
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -14,8 +16,19 @@ const ProductForm = () => {
             price: price,
             description: description
         })
-            .then(res => console.log(res))
-            .catch(err => console.log(`Create Page error: ${err}`))
+            .then(res => setErrors({}))
+            .catch(err => {
+                const errorResponse = err.response.data.errors
+                const errorObj = {}
+                // console.log(Object.keys(errorResponse))
+                for (const key of Object.keys(errorResponse)) {
+                    // console.log(errorResponse[key].message)
+                    errorObj[key] = errorResponse[key].message
+                    // errorArr.push(errorResponse[key].message)
+                }
+                // console.log(errorObj)
+                setErrors(errorObj)
+            })
 
         setTitle('');
         setPrice('');
@@ -29,7 +42,9 @@ const ProductForm = () => {
             <div className='w-50 m-auto'>
                 {/* Form Submission */}
                 <form onSubmit={handleSubmit}>
+                    {/* {errors.map((err, index) => <p key={index}>{err}</p>)} */}
                     {/* Form divisions */}
+                    <p style={{margin:0, color:"red"}}>{errors.title}</p>
                     <div className="mb-3 row bg-dark bg-opacity-10 p-2 rounded">
                         {/* Title */}
                         <label className="col-sm-4 col-form-label">Title</label>
@@ -41,6 +56,7 @@ const ProductForm = () => {
                                 value={title} />
                         </div>
                     </div>
+                    <p style={{margin:0, color:"red"}}>{errors.price}</p>
                     <div className="mb-3 row bg-dark bg-opacity-10 p-2 rounded">
                         {/* Price */}
                         <label className="col-sm-4 col-form-label">Price</label>
@@ -52,6 +68,7 @@ const ProductForm = () => {
                                 value={price} />
                         </div>
                     </div>
+                    <p style={{margin:0, color:"red"}}>{errors.description}</p>
                     <div className="mb-3 row bg-dark bg-opacity-10 p-2 rounded">
                         {/* Description */}
                         <label className="col-sm-4 col-form-label">Description</label>
